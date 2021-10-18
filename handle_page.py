@@ -4,92 +4,112 @@ import sys
 import json
 import os
 
-def getSoup(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    return soup
+class HandlePage:
+    def __init__(self, url):
+        self.url = url
+        self.titulo = ""
+        self.soup = ""
+        self.path_artigos = ""
+        self.jsonobj = ""
+        self.conteudo = ""
+        self.autor = ""
+        self.data = ""
+        self.image_url = ""
+        self.dict = {}
+    
+    def getSoup(self):
+        response = requests.get(self.url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        self.soup = soup
 
-def getTitulo(soup):
-    titulo = soup.title.string.split("–")[0].rstrip()
-    return titulo
+    def getTitulo(self):
+        titulo = self.soup.title.string.split("–")[0].rstrip()
+        self.titulo = titulo
 
-def getTexto(soup):
-    bodydiv = soup.body.find("div",{"itemprop":"articleBody"})
-    bodycontent = bodydiv.find_all(lambda tag: tag.name == 'p' and not tag.attrs)
-    bodycontentfinal = ""
-    for p in bodycontent:
-        bodycontentfinal += p.getText()
-    return bodycontentfinal
+    def getTexto(self):
+        bodydiv = self.soup.body.find("div",{"itemprop":"articleBody"})
+        bodycontent = bodydiv.find_all(lambda tag: tag.name == 'p' and not tag.attrs)
+        bodycontentfinal = self.titulo + "\n"
+        for p in bodycontent:
+            bodycontentfinal += p.getText() + " "
+        self.conteudo = bodycontentfinal
 
-def getAutor(soup):
-    try:
-        bodydiv = soup.body.find("div",{"itemprop":"articleBody"})
-        autor, data = bodydiv.p.getText().split('\n')
-    except Exception as e:
-        autor = "Vazio"
-        pass
-    return autor
+    def getAutor(self):
+        try:
+            bodydiv = self.soup.body.find("div",{"itemprop":"articleBody"})
+            autor, data = bodydiv.p.getText().split('\n')
+        except Exception as e:
+            autor = "Vazio"
+            pass
+        self.autor = autor
 
-def getData(soup):
-    try:
-        bodydiv = soup.body.find("div",{"itemprop":"articleBody"})
-        autor, data = bodydiv.p.getText().split('\n')
-    except Exception as e:
-        data = "Vazio"
-        pass
-    return data
+    def getData(self):
+        try:
+            bodydiv = self.soup.body.find("div",{"itemprop":"articleBody"})
+            autor, data = bodydiv.p.getText().split('\n')
+        except Exception as e:
+            data = "Vazio"
+            pass
+        self.data = data
 
-def getImageUrl(soup):
-    image_url = soup.find('figure').img['src']
-    return image_url
+    def getImageUrl(self):
+        image_url = self.soup.find('figure').img['src']
+        self.image_url = image_url
 
-def getJson(url,soup):
-    dict = {
-        "url": url,
-        "titulo": getTitulo(soup),
-        "autor": getAutor(soup),
-        "data": getData(soup),
-        "imgurl": getImageUrl(soup)
-    }
-    #json_object = json.dumps(dict, indent = 2) 
-    return dict#json_object
+    def getJson(self):
+        dict = {
+            "url": self.url,
+            "titulo": self.titulo,
+            "autor": self.autor,
+            "data": self.data,
+            "imgurl": self.image_url
+        }
+        #json_object = json.dumps(dict, indent = 2) 
+        self.dict = dict #jsonobj
 
-def saveJson(jsonobj,titulo,path_artigos = ""):
-    nomearquivo = titulo+".json"
-    nomecompleto = os.path.join(path_artigos, nomearquivo)
-    f = open(nomecompleto, "w", encoding = "ascii")
-    json.dump(jsonobj, f, indent = 2)
-    f.close()
-    return True
+    def saveJson(self):
+        nomearquivo = self.titulo+".json"
+        nomecompleto = os.path.join(self.path_artigos, nomearquivo)
+        f = open(nomecompleto, "w", encoding = "ascii")
+        json.dump(self.dict, f, indent = 2)
+        f.close()
+        #return True
 
-def saveConteudo(conteudo,titulo,path_artigos = ""):
-    nomearquivo = titulo+".txt"
-    nomecompleto = os.path.join(path_artigos, nomearquivo)
-    f = open(nomecompleto, "w")
-    f.write(conteudo)
-    f.close()
-    return True
+    def saveConteudo(self):
+        nomearquivo = self.titulo+".txt"
+        nomecompleto = os.path.join(self.path_artigos, nomearquivo)
+        f = open(nomecompleto, "w")
+        f.write(self.conteudo)
+        f.close()
+        #return True
 
 def main():
-    """Função principal da aplicação.
-    """
+    # Funcao principal da aplicacao ##
     print('Uso: python3 handle_page.py "<url do artigo>"')
     url = sys.argv[1]
+
+    page = HandlePage(url)
+
     print(url)
-    soup = getSoup(url)
-    conteudo = getTexto(soup) 
-    titulo = getTitulo(soup)
+
+    # Executa os metodos necessarios para adquirir os dados #
+    page.getSoup()
+    page.getTitulo()
+    page.getTexto() 
+    page.getAutor()
+    page.getData()
+    page.getImageUrl()
     print("Salvando conteúdo...")
-    saveConteudo(conteudo,titulo)
-    jsonobj = getJson(url,soup)
+    page.saveConteudo()
+    page.getJson()
     print("Salvando JSON...")
-    saveJson(jsonobj,titulo)
+    page.saveJson()
     print("FIM.")
     
 if __name__ == "__main__":
     main()
 
-## Conteudo: outra estratégia (mais genérica)
+## Conteudo: outra estrategia (mais generica)
 # import re
 # textoCompleto = soup.get_text()
 # index1 = textoCompleto.find("publicado em")+27
