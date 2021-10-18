@@ -10,11 +10,6 @@ Esse projeto tem como objetivo inicial sumarizar os artigos encontrados na plata
 Em seguida, temos intenção de implementar um algoritmo que identifique as palavras e sentenças mais importantes do texto, e futuramente encontrar relações entre os diversos artigos disponíveis no site, os agrupando.
 Essas ferramentas irão ser de grande valia para uma **ideia futura** que consiste na criação de **Histórias em Quadrinhos** para distribuição em escolas públicas levando conteúdo científico de forma acessível e de maneira divertida.
 
-```mermaid
-graph LR
-A(Crawler) --> B(Sumarizar textos) --> C(Palavras/Sentenças chaves) --> D(Agrupar Artigos semelhantes)
-```
-
 - **O que temos atualmente**
 Por enquanto, temos o Crawler pronto. Tal algoritmo extrai com precisão os textos presentes no site do Saense, os salvando em arquivos ".txt", além disso salva informações extras em ".json" e imagens presentes no artigo que podem ser úteis nas próximas etapas do projeto.
 
