@@ -1,5 +1,3 @@
 theme: jekyll-theme-midnight
 
-layout: page
-title: "Teste"
-permalink: /teste.md
+permalink: /teste.md/
