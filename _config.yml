@@ -1,3 +1,4 @@
 theme: jekyll-theme-midnight
 
-permalink: /teste.md/
+teste:
+  permalink: /teste.md/
