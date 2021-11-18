@@ -1,3 +1,6 @@
-#theme: jekyll-theme-midnight
-theme: jekyll-theme-hacker
-permalink: /teste.md/
+theme: jekyll-theme-midnight
+
+Teste:
+  layout: page
+  title: "Teste"
+  permalink: /teste.md/
