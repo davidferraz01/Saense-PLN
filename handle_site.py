@@ -8,6 +8,7 @@ from PIL import Image
 from random import randint
 from time import sleep
 from handle_page import HandlePage
+import json
 
 class HandleSite():
     def __init__(self):
@@ -18,7 +19,9 @@ class HandleSite():
         self.ini = 0
         self.fim = 0
         self.lim = 0
-        self.URL = ""
+        self.URL = 'https://saense.com.br/page/'
+        self.Prim_Art = ""
+        self.Ult_Art = ""
 
     # Salvar conteudo em arquivo #
     def saveTxt(self):
@@ -46,6 +49,25 @@ class HandleSite():
         nomecompleto = os.path.join(self.path_artigos, nomearquivocontrole)
         fcontrole = open(nomecompleto, "a+")
 
+        nomejsoncontrole = "__controle.json"
+        nomecompletojson = os.path.join(self.path_artigos, nomejsoncontrole)
+
+        try:
+            with open(nomecompletojson) as jfile:
+                jdata = json.load(jfile)
+                primeiro = jdata["primeiro"]
+                ultimo = jdata["ultimo"]
+        except: #json.decoder.JSONDecodeError:
+            jdata = open(nomecompletojson, "a+")
+            dict = {"primeiro": " ", "ultimo": " "}
+            json.dump(dict, jdata, indent=2)
+            primeiro = " "
+            ultimo = " "
+
+        ## Iniciando variaveis auxiliares ##
+        a = True
+        contador = 0
+        controle_dict = {"primeiro": primeiro, "ultimo": ultimo}
         for page in range(self.ini,self.lim):
             fcontrole.write(str(page)+",")
 
@@ -60,43 +82,57 @@ class HandleSite():
             ## handle page ##
             for art in artigosurls:
                 page = HandlePage(art)
-                # Executa os metodos necessarios para adquirir os dados #
                 page.path_artigos = self.path_artigos
                 page.getSoup()
                 page.getTitulo()
-                page.getTexto() 
-                page.getAutor()
-                page.getData()
-                page.getImageUrl()
-                page.getJson()
-                self.titulo = page.titulo
-                self.image_url = page.image_url
-                self.saveImg() #salvar .png/jpg/etc..
 
-                try: 
-                    page.saveConteudo() #salvar .txt
-                    page.saveJson()
-                except Exception as e:
-                    print(e)
-                    pass    
+                temp = art.split('/')
+                controle = temp[::-1][1]
 
+                if page.titulo == primeiro:
+                    a = False
+                if a == True:
+                    print(controle)
+                    if contador == 0:
+                        controle_dict = {"primeiro": page.titulo, "ultimo": ""}
+                    page.getTexto() 
+                    page.getAutor()
+                    page.getData()
+                    page.getImageUrl()
+                    page.getJson()
+                    self.titulo = page.titulo
+                    self.image_url = page.image_url
+                    self.saveImg()
+
+                    try: 
+                        page.saveConteudo()
+                        page.saveJson()
+                    except Exception as e:
+                        print(e)
+
+                if page.titulo == ultimo:
+                    a = True
+                
+                contador += 1
                 print(".", end = '', flush=True)
+                
             print()
-            sleep(randint(1,3))
+
             ## Evitar sobrecarregar servidor do portal com frequencia alta de acessos ##
+            sleep(1)
+        ## local variable 'controle_dict' referenced before assignment ##
+        controle_dict["ultimo"] = page.titulo
+        jcontrole = open(nomecompletojson, "w")
+        json.dump(controle_dict, jcontrole, indent=2)
+        
         fcontrole.close()
         print("FIM.")
 
 def main():
-    ## Funcao principal da aplicacao. ##
-    print('Uso: python3 handle_site.py <page_ini> <page_fim> <url do site>')
+    print('Uso: python3 handle_site.py <page_ini> <page_fim>')
 
     site = HandleSite()
 
-    site.URL = 'https://saense.com.br/page/' if (sys.argv[3] == "") else sys.argv[3]
-
-    ## Acesso ao Saense principal e parsing
-    # URL = 'https://saense.com.br/page/'
     site.ini = int(sys.argv[1]) #pagina inicial
     site.fim = int(sys.argv[2]) #pagina final
     site.lim = site.fim+1
@@ -105,6 +141,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
-## URL da pagina seguinte (talvez não precise)
-#pgseguinteurl = soup.body.find("a",{"class": "next page-numbers"}).get('href')

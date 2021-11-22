@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import sys
 import json
 import os
+import unicodedata
+import re
 
 class HandlePage:
     def __init__(self, url):
@@ -23,8 +25,14 @@ class HandlePage:
         self.soup = soup
 
     def getTitulo(self):
-        titulo = self.soup.title.string.split("–")[0].rstrip()
-        self.titulo = titulo
+        titulo = self.soup.title.string.split("–")[0].rstrip().lower()
+        cleanText = []
+        for ch in titulo:
+            nfkd = unicodedata.normalize('NFKD', ch)
+            filter = re.sub('[^a-z \\\]', '', nfkd)
+            char = u"".join([c for c in filter if not unicodedata.combining(c)])
+            (cleanText).append(char)
+        self.titulo =  ''.join(cleanText)        
 
     def getTexto(self):
         bodydiv = self.soup.body.find("div",{"itemprop":"articleBody"})
@@ -64,7 +72,6 @@ class HandlePage:
             "data": self.data,
             "imgurl": self.image_url
         }
-        #json_object = json.dumps(dict, indent = 2) 
         self.dict = dict #jsonobj
 
     def saveJson(self):
@@ -108,16 +115,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
-## Conteudo: outra estrategia (mais generica)
-# import re
-# textoCompleto = soup.get_text()
-# index1 = textoCompleto.find("publicado em")+27
-# index2 = textoCompleto.find('Como citar')
-# textoRelevante = textoCompleto[index1:index2]
-# textoLimpo = re.sub('[\n\t]', '', textoRelevante)
-# print(textoLimpo)
-
-# Salvar CSV contendo Titulo, Autor, Data, Imagem
-# A partir do titulo, dá pra recuperar o arquivo .txt e .png/jpg
-# .....
