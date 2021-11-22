@@ -20,6 +20,5 @@ Para executar o projeto, instale as dependências executando o comando:
 
 Pronto, basta executar o arquivo "handle_site.py", iniciando a extração dos dados:
 
-    python3 handle_site.py <pag Incial> <pag Final> ""
+    python3 handle_site.py <pag Incial> <pag Final>
 **Obs.:** os argumentos "pag Inicial" e "pag Final" são números inteiros.
-
