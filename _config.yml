@@ -10,10 +10,10 @@
 # --- Required options --- #
 
 # Name of website
-title: My Website
+title: Saense PLN
 
 # Your name to show in the footer
-author: Some Person
+author: David Ferraz
 
 # --- List of links in the navigation bar --- #
 
@@ -107,8 +107,8 @@ post_search: true
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
-page-col: "#FFFFFF"
-text-col: "#404040"
+page-col: "#010037"
+text-col: "#F3F3F3"
 link-col: "#008AFF"
 hover-col: "#0085A1"
 footer-col: "#EAEAEA"
