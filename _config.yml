@@ -40,10 +40,9 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "davidferrazufs@academico.ufs.br"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
   #facebook: deanattali
   github: 0xdferraz
-  #twitter: daattali
+  twitter: 0xdferraz
   #patreon: DeanAttali
   #youtube: c/daattali
   linkedin: daattali
@@ -64,9 +63,6 @@ social-network-links:
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
 
-# If you want your website to generate an RSS feed, provide a description
-# The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
 
 # --- General options --- #
 
@@ -74,10 +70,11 @@ rss-description: This website is a virtual proof that I'm awesome
 share-links-active:
   github: true
   linkedin: true
+  twitter: true
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "Página inicial"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
@@ -101,7 +98,7 @@ post_search: true
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
-page-col: "#2F4F4F"
+page-col: "#000000" #"#2F4F4F"
 text-col: "#F0F8FF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
