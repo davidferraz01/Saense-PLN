@@ -15,6 +15,18 @@ title: Saense PLN
 # Your name to show in the footer
 author: David Ferraz
 
+navbar-col: "#EAEAEA"
+navbar-text-col: "#404040"
+navbar-border-col: "#DDDDDD"
+page-col: "#2F4F4F"
+text-col: "#F3F3F3"
+link-col: "#008AFF"
+hover-col: "#0085A1"
+footer-col: "#EAEAEA"
+footer-text-col: "#777777"
+footer-link-col: "#404040"
+footer-hover-col: "#0085A1"
+
 # --- List of links in the navigation bar --- #
 
 navbar-links:
@@ -101,20 +113,6 @@ post_search: true
 #keywords: "my,list,of,keywords"
 
 # --- Colours / background image --- #
-
-# Personalize the colours in your website. Colour values can be any valid CSS colour
-
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-page-col: "#2F4F4F"
-text-col: "#2F4F4F" #"#F3F3F3"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
