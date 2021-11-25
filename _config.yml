@@ -19,7 +19,7 @@ navbar-links:
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  #Author's home: "https://deanattali.com"
 
 # --- Logo --- #
 
@@ -41,29 +41,10 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "davidferrazufs@academico.ufs.br"
-  #facebook: deanattali
   github: 0xdferraz
   twitter: 0xdferraz
-  #patreon: DeanAttali
-  #youtube: c/daattali
-  linkedin: daattali
-#  medium: yourname
-#  reddit: yourname
-#  xing: yourname
-#  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
-#  instagram: deanat78
-#  spotify: yourname
-#  telephone: +14159998888
-#  steam: deanat78
-#  twitch: yourname
-#  yelp: yourname
-#  telegram: yourname
-#  calendly: yourname
-#  mastodon: instance.url/@username
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
-
+  reddit: DavidHFerraz
+  linkedin: david-ferraz-0569a91bb
 
 # --- General options --- #
 
@@ -72,6 +53,7 @@ share-links-active:
   github: true
   linkedin: true
   twitter: true
+  reddit: true
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
@@ -207,7 +189,7 @@ date_format: "%B %-d, %Y"
 # --- You don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "America/Bahia"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
