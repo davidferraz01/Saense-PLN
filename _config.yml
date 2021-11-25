@@ -43,7 +43,6 @@ social-network-links:
   email: "davidferrazufs@academico.ufs.br"
   github: 0xdferraz
   twitter: 0xdferraz
-  reddit: DavidHFerraz
   linkedin: david-ferraz-0569a91bb
 
 # --- General options --- #
@@ -53,7 +52,6 @@ share-links-active:
   github: true
   linkedin: true
   twitter: true
-  reddit: true
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
@@ -81,7 +79,7 @@ post_search: true
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
-page-col: "#000000" #"#2F4F4F"
+page-col: "#363945" #"#2F4F4F"
 text-col: "#F0F8FF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
