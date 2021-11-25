@@ -14,6 +14,7 @@ author: David Ferraz
 # --- List of links in the navigation bar --- #
 
 navbar-links:
+  Teste: "teste.md"
   About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
