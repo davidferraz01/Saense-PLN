@@ -14,11 +14,10 @@ author: David Ferraz
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Resumos: "resumos"
-  Sobre mim: "aboutme"
-  #Resources:
-    #- Beautiful Jekyll: "https://beautifuljekyll.com"
+  Sumarização:
+    - TF-IDF: "tf-idf"
     #- Learn markdown: "https://www.markdowntutorial.com/"
+  Sobre mim: "aboutme"
 
 # --- Logo --- #
 
