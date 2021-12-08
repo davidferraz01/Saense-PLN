@@ -14,9 +14,8 @@ author: David Ferraz
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Teste: "teste"
   Resumos: "resumos"
-  About Me: "aboutme"
+  Sobre mim: "aboutme"
   #Resources:
     #- Beautiful Jekyll: "https://beautifuljekyll.com"
     #- Learn markdown: "https://www.markdowntutorial.com/"
