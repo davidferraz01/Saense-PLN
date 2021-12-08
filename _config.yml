@@ -15,11 +15,11 @@ author: David Ferraz
 
 navbar-links:
   Teste: "teste"
+  Resumos: "resumos"
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  #Author's home: "https://deanattali.com"
+  #Resources:
+    #- Beautiful Jekyll: "https://beautifuljekyll.com"
+    #- Learn markdown: "https://www.markdowntutorial.com/"
 
 # --- Logo --- #
 
@@ -83,7 +83,7 @@ page-col: "#22272E"
 text-col: "#F0F8FF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
-footer-col: "#F0F8FF" #2D333B
+footer-col: "#2D333B"
 footer-text-col: "#F0F8FF"
 footer-link-col: "#737581"
 footer-hover-col: "#0085A1"
