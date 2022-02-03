@@ -16,7 +16,7 @@ author: David Ferraz
 navbar-links:
   Sumarização:
     - TF-IDF: "tf-idf"
-    #- Learn markdown: "https://www.markdowntutorial.com/"
+    - Abstrativa: "abstrativa" 
   Sobre mim: "aboutme"
 
 # --- Logo --- #
