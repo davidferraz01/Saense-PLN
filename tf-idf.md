@@ -14,13 +14,13 @@ O valor **“TF”** de uma palavra aumenta de maneira proporcional à medida qu
 
 > **Exemplo**
 
-> Considere um documento com 100 palavras no qual o termo **“IA”** aparece 5 vezes. Portanto:
+> - Considere um documento com 100 palavras no qual o termo **“IA”** aparece 5 vezes. Portanto:
   **TF** = 5/100 = 0.05
   
-> Se tivermos 100 documentos ao total e o termo “IA” aparece em 20 desses documentos, logo:
+> - Se tivermos 100 documentos ao total e o termo “IA” aparece em 20 desses documentos, logo:
   **IDF** = Log(100/20) = 0.69
   
-> Por fim, o valor TF-IDF do termo “IA” é:
+> - Por fim, o valor TF-IDF do termo “IA” é:
   **TF-IDF** = 0.05 * 0.69 = **0.034**
 
 **OBS.:** É importante ressaltar que quanto maior o **TF-IDF** mais raro será o termo. Consequentemente, quanto menor o valor, mais comum será o mesmo.
