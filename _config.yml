@@ -16,7 +16,7 @@ author: David Ferraz
 navbar-links:
   Sumarização:
     - TF-IDF: "tf-idf"
-    - Abstrativa: "abstrativa" 
+    - Abstrativa (Pegasus): "abstrativa" 
   Sobre mim: "aboutme"
 
 # --- Logo --- #
