@@ -8,9 +8,9 @@ O termo **“TF-IDF”** vem do inglês *Term Frequency - Inverse Document Frequ
 
 O valor **“TF”** de uma palavra aumenta de maneira proporcional à medida que o seu número de ocorrências aumenta no texto, no entanto, esse valor é equilibrado pelo **“IDF”** que representa o quão rara é a palavra no texto ou documentos. Portanto, temos:
 
-**TF** = *(número de vezes que o termo t aparece no texto) / (número de termos totais no texto)*
+**TF** = *(número de vezes que o termo t aparece no texto) / (número de termos totais no texto)*;
 
-**IDF** = *Log (N/n)*, no qual **N** é o número de documentos ou sentenças no texto, e **n** é o número de documentos em que o termo apareceu
+**IDF** = *Log (N/n)*, no qual **N** é o número de documentos ou sentenças no texto, e **n** é o número de documentos em que o termo apareceu.
 
 > **Exemplo**
 
