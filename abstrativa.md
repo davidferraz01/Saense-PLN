@@ -3,7 +3,7 @@ layout: page
 title: Sumarização Abstrativa
 subtitle: Resumos gerados a partir desta técnica
 ---
-## O que é Sumarização Abstrativa com Google Pegasus?
+## Sumarização Abstrativa com Google Pegasus?
 Nesse tipo de sumarização, diferente do método já abordado, **"TF-IDF"**, no qual apenas extraímos as sentenças mais importantes do texto, obtemos um resultado totalmente novo a partir do texto de entrada. Para isso precisamos de:
 
 ![Diagrama 01](/assets/img/diagrama01.png)
