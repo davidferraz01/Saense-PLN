@@ -23,12 +23,9 @@ Ao passar os dados para o Decoder seu trabalho é decodificar o vetor de context
 
 Para que o modelo funcione adequadamente precisamos treiná-lo, mas para isso precisamos de muitos dados, são eles os textos e seus respectivos resumos. Para se ter uma idéia podemos ver a quantidade de dados necessários para treinar alguns modelos feitos pela Google:
 
-CNN -> 90k
-NYT -> 97k
-DailyMail -> 197k
-XSum -> 204k
-
-![Diagrama 04](/assets/img/diagrama04.png)
+<p align="center">
+  <img src="/assets/img/diagrama04.png">
+</p>
 
 Seria uma tarefa impossível para nós encontrar tantos dados assim. Então aqui entra o Google Pegasus, que reúne diversos modelos pré-treinados com milhares de dados. Dessa forma, podemos utilizá-los e realizar apenas um ajuste fino para obter resultados com uma boa acurácia.
  
