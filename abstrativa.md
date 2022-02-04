@@ -18,6 +18,8 @@ Para isso, o **"Encoder"** irá analisar o texto dado como input e irá gerar o 
 
 Ao passar os dados para o **"Decoder"** seu trabalho é decodificar o vetor de contexto de forma a produzir o resumo desejado.
 
+## Treinando o Modelo
+
 Para que o modelo funcione adequadamente precisamos treiná-lo, mas para isso precisamos de muitos dados, são eles os textos e seus respectivos resumos. Para se ter uma idéia podemos ver a quantidade de dados necessários para treinar alguns modelos feitos pela **Google**:
 
 <p align="center">
