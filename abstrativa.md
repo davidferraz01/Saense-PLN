@@ -31,6 +31,6 @@ Por fim, para implementar o algoritmo temos o site [Hugging Face](https://huggin
 
 > **Problemas**
 
-> É necessário traduzir o texto para o inglês e traduzir novamente para o português o resumo obtido;
+> - É necessário traduzir o texto para o inglês e traduzir novamente para o português o resumo obtido;
 
-> O Modelo gera resumos muito pequenos, mas é provável que isso possa ser ajustado.
+- > O Modelo gera resumos muito pequenos, mas é provável que isso possa ser ajustado.
