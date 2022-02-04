@@ -4,12 +4,6 @@ title: Sumarização Abstrativa
 subtitle: Resumos gerados a partir desta técnica
 ---
 
-And this will produce a flow chart:
+Texto para teste
 
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+![Diagrama 01](/assets/img/diagrama01.png "Diagrama 01")
