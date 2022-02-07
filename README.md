@@ -13,4 +13,4 @@ Essas ferramentas irão ser de grande valia para uma **ideia futura** que consis
 - **O que temos atualmente**
 Por enquanto, temos o Crawler pronto. Tal algoritmo extrai com precisão os textos presentes no site do Saense, os salvando em arquivos ".txt", além disso salva informações extras em ".json" e imagens presentes no artigo que podem ser úteis nas próximas etapas do projeto.
 
-> Para mais informações visite a [página](https://0xdferraz.github.io/Saense-PLN/) do projeto.
+#### Para mais informações visite a [página](https://0xdferraz.github.io/Saense-PLN/) do projeto.
