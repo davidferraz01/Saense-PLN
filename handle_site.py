@@ -129,15 +129,23 @@ class HandleSite():
         print("FIM.")
 
 def main():
-    print('Uso: python3 handle_site.py <page_ini> <page_fim>')
 
-    site = HandleSite()
+    if sys.argv[1] == "--help" or sys.argv[1] == "-h":
+        print("""
+        Handle Site ( https://github.com/0xdferraz/Saense-PLN )
+        Extrai o texto, imagem e informacoes das postagens do Site Saense ( https://saense.com.br/ )
 
-    site.ini = int(sys.argv[1]) #pagina inicial
-    site.fim = int(sys.argv[2]) #pagina final
-    site.lim = site.fim+1
+        Uso: python handle_site.py <Pagina Inicial> <Pagina Final>
+        """)
+        exit()
+    else:
+        site = HandleSite()
 
-    site.extract()
+        site.ini = int(sys.argv[1]) #pagina inicial
+        site.fim = int(sys.argv[2]) #pagina final
+        site.lim = site.fim+1
+
+        site.extract()
     
 if __name__ == "__main__":
     main()

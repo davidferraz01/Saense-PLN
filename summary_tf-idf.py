@@ -1,6 +1,7 @@
 import math
 import nltk
 import sys
+import os
 from nltk import sent_tokenize, word_tokenize, PorterStemmer
 from nltk.corpus import stopwords    
 
@@ -128,10 +129,22 @@ def _generate_summary(sentences, sentenceValue, threshold):
 
 
 def main ():
+    if sys.argv[1] == "--help" or sys.argv[1] == "-h":
+        print("""
+        Summary TF-IDF ( https://github.com/0xdferraz/Saense-PLN )
+        Resume textos utilizando a tecnica TF-IDF
+
+        Uso: python summary_tf-idf.py <Path do Artigo>
+        """)
+        exit()
+    else:
+        arq = sys.argv[1]
+
     nltk.download('punkt')
     nltk.download('stopwords')
 
-    arq = sys.argv[1]
+    path = arq.split('/')
+
 
     with open(arq, "r", encoding="utf-8") as f:
         text = " ".join(f.readlines())
@@ -189,15 +202,16 @@ def main ():
     for i in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]:
         summary = _generate_summary(sentences, sentence_scores, i * threshold)
         if len(summary) <= art_len_limit:
-            print("Tamanho final do texto:", len(summary), "caracteres")
+            print("\nTamanho final do texto:", len(summary), "caracteres\n")
 
             # Save summary #
-            nomeArq = "Summary_" + arq
-            f = open(nomeArq, "w")
+            #  CRIAR UMA PASTA DE RESUMOS #
+            nomearquivo = "Summary_" + path[1]
+            nomecompleto = os.path.join("./resumos_tf-idf", nomearquivo)
+            f = open(nomecompleto, "w")
             f.write(summary)
             f.close()
             break
-        
 
 if __name__ == "__main__":
     main()

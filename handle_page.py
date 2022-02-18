@@ -38,7 +38,7 @@ class HandlePage:
                 ref = False
             else:
                 nfkd = unicodedata.normalize('NFKD', ch)
-                filter = re.sub('[^A-z 1-9 , . ( ) / : - -\\\]', '', nfkd)
+                filter = re.sub('[^A-z 0-9 , . ( ) / : - -\\\]', '', nfkd)
                 char = u"".join([c for c in filter if not unicodedata.combining(c)])
                 cleanText.append(char)
         return ''.join(cleanText)
@@ -105,8 +105,16 @@ class HandlePage:
 
 def main():
     # Funcao principal da aplicacao ##
-    print('Uso: python3 handle_page.py "<url do artigo>"')
-    url = sys.argv[1]
+    if sys.argv[1] == "--help" or sys.argv[1] == "-h":
+        print("""
+        Handle Page ( https://github.com/0xdferraz/Saense-PLN )
+        Extrai o texto, imagem e informacoes de uma postagem do Saense ( https://saense.com.br/ )
+
+        Uso: python handle_page.py <URL do Artigo>
+        """)
+        exit()
+    else:
+        url = sys.argv[1]
 
     page = HandlePage(url)
 
