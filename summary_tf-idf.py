@@ -1,18 +1,8 @@
 import math
 import nltk
+import sys
 from nltk import sent_tokenize, word_tokenize, PorterStemmer
 from nltk.corpus import stopwords    
-
-#nltk.download('punkt')
-#nltk.download('stopwords')
-
-arq = "" 
-
-with open(arq, "r", encoding="utf-8") as f:
-  text = " ".join(f.readlines())
-
-sentences = sent_tokenize(text) # NLTK function
-total_documents = len(sentences)
 
 def _create_frequency_matrix(sentences):
     frequency_matrix = {}
@@ -136,63 +126,78 @@ def _generate_summary(sentences, sentenceValue, threshold):
 
     return summary
 
-###########################################
 
-'''
-We already have a sentence tokenizer, so we just need 
-to run the sent_tokenize() method to create the array of sentences.
-'''
-# 1 Sentence Tokenize
-sentences = sent_tokenize(text)
-total_documents = len(sentences)
-#print(sentences)
+def main ():
+    nltk.download('punkt')
+    nltk.download('stopwords')
 
-# 2 Create the Frequency matrix of the words in each sentence.
-freq_matrix = _create_frequency_matrix(sentences)
-#print(freq_matrix)
+    arq = sys.argv[1]
 
-'''
-Term frequency (TF) is how often a word appears in a document, divided by how many words are there in a document.
-'''
-# 3 Calculate TermFrequency and generate a matrix
-tf_matrix = _create_tf_matrix(freq_matrix)
-#print(tf_matrix)
+    with open(arq, "r", encoding="utf-8") as f:
+        text = " ".join(f.readlines())
 
-# 4 creating table for documents per words
-count_doc_per_words = _create_documents_per_words(freq_matrix)
-#print(count_doc_per_words)
+    sentences = sent_tokenize(text) # NLTK function
+    total_documents = len(sentences)
 
-'''
-Inverse document frequency (IDF) is how unique or rare a word is.
-'''
-# 5 Calculate IDF and generate a matrix
-idf_matrix = _create_idf_matrix(freq_matrix, count_doc_per_words, total_documents)
-#print(idf_matrix)
+    '''
+    We already have a sentence tokenizer, so we just need 
+    to run the sent_tokenize() method to create the array of sentences.
+    '''
+    # 1 Sentence Tokenize
+    sentences = sent_tokenize(text)
+    total_documents = len(sentences)
+    #print(sentences)
 
-# 6 Calculate TF-IDF and generate a matrix
-tf_idf_matrix = _create_tf_idf_matrix(tf_matrix, idf_matrix)
-#print(tf_idf_matrix)
+    # 2 Create the Frequency matrix of the words in each sentence.
+    freq_matrix = _create_frequency_matrix(sentences)
+    #print(freq_matrix)
 
-# 7 Important Algorithm: score the sentences
-sentence_scores = _score_sentences(tf_idf_matrix)
-#print(sentence_scores)
+    '''
+    Term frequency (TF) is how often a word appears in a document, divided by how many words are there in a document.
+    '''
+    # 3 Calculate TermFrequency and generate a matrix
+    tf_matrix = _create_tf_matrix(freq_matrix)
+    #print(tf_matrix)
 
-# 8 Find the threshold
-threshold = _find_average_score(sentence_scores)
-#print(threshold)
+    # 4 creating table for documents per words
+    count_doc_per_words = _create_documents_per_words(freq_matrix)
+    #print(count_doc_per_words)
 
-# 9 Important Algorithm: Generate the summary
-for i in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]:
-  summary = _generate_summary(sentences, sentence_scores, i * threshold)
-  if len(summary) <= 2200:
-    print("Tamanho do texto:", len(summary))
-    #print("\n" + summary)
+    '''
+    Inverse document frequency (IDF) is how unique or rare a word is.
+    '''
+    # 5 Calculate IDF and generate a matrix
+    idf_matrix = _create_idf_matrix(freq_matrix, count_doc_per_words, total_documents)
+    #print(idf_matrix)
 
-    # Save summary #
+    # 6 Calculate TF-IDF and generate a matrix
+    tf_idf_matrix = _create_tf_idf_matrix(tf_matrix, idf_matrix)
+    #print(tf_idf_matrix)
 
-    nomeArq = "R_" + arq
-    f = open(nomeArq, "w")
-    f.write(summary)
-    f.close()
-    break
+    # 7 Important Algorithm: score the sentences
+    sentence_scores = _score_sentences(tf_idf_matrix)
+    #print(sentence_scores)
+
+    # 8 Find the threshold
+    threshold = _find_average_score(sentence_scores)
+    #print(threshold)
+
+    # 9 Important Algorithm: Generate the summary
+    # Article length #
+    art_len_limit = 1100
+
+    for i in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]:
+        summary = _generate_summary(sentences, sentence_scores, i * threshold)
+        if len(summary) <= art_len_limit:
+            print("Tamanho final do texto:", len(summary), "caracteres")
+
+            # Save summary #
+            nomeArq = "Summary_" + arq
+            f = open(nomeArq, "w")
+            f.write(summary)
+            f.close()
+            break
         
+
+if __name__ == "__main__":
+    main()
