@@ -10,6 +10,8 @@ Para instruções de execução dos algoritmos, execute-os com o parâmentro "--
 
 > python summary_tf-idf.py --help
 
+Ou:
+
 > python summary_tf-idf.py -h
 
 Para mais informações visite nossa [página](https://0xdferraz.github.io/Saense-PLN/).
