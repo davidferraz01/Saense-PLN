@@ -92,7 +92,7 @@ class HandleSite():
                 if page.titulo == primeiro:
                     a = False
                 if a == True:
-                    print(controle)
+                    #print(controle)
                     if contador == 0:
                         controle_dict = {"primeiro": page.titulo, "ultimo": ""}
                     page.getTexto() 
