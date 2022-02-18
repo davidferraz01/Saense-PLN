@@ -4,7 +4,7 @@
 #### Um projeto de Processamento de Linguagem Natural voltado ao site Saense. 
 
 Para utilizar executar os algortimos necessitamos primeiramente instalar as dependências necessárias:
-> pip install -r requiriments.txt
+> pip install -r requirements.txt
 
 Para instruções de execução dos algoritmos, execute-os com o parâmentro "--help" ou "-h", como por exemplo:  
 
