@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import sys
+from urllib.parse import urlsplit
+from PIL import Image
 import json
 import os
 import unicodedata
@@ -9,16 +11,16 @@ import re
 class HandlePage:
     def __init__(self, url):
         self.url = url
-        self.titulo = ""
-        self.soup = ""
-        self.path_artigos = ""
-        self.jsonobj = ""
-        self.conteudo = ""
-        self.autor = ""
-        self.data = ""
-        self.image_url = ""
+        self.path_artigos = "./artigos"
         self.dict = {}
-    
+        self.titulo = None
+        self.soup = None
+        self.jsonobj = None
+        self.text = None
+        self.autor = None
+        self.data = None
+        self.image_url = None
+        
     def getSoup(self):
         response = requests.get(self.url)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -53,7 +55,7 @@ class HandlePage:
         bodycontentfinal = ""
         for p in bodycontent[1:]:
             bodycontentfinal += p.get_text() + " "
-        self.conteudo = self.cleanText(bodycontentfinal)
+        self.text = self.cleanText(bodycontentfinal)
         
     def getAutor(self):
         try:
@@ -99,9 +101,18 @@ class HandlePage:
         nomearquivo = self.titulo+".txt"
         nomecompleto = os.path.join(self.path_artigos, nomearquivo)
         f = open(nomecompleto, "w")
-        f.write(self.conteudo)
+        f.write(self.text)
         f.close()
         #return True
+    
+    def saveImg(self):
+        parts = urlsplit(self.image_url)
+        paths = parts.path.split('/')
+        formatoimg = paths[::-1][0].split('.')[::-1][0]
+        img = Image.open(requests.get(self.image_url, stream = True).raw)
+        nomearquivoimg = self.titulo + "." + formatoimg
+        nomecompleto = os.path.join(self.path_artigos, nomearquivoimg)
+        img.save(nomecompleto, formatoimg)
 
 def main():
     # Funcao principal da aplicacao ##
@@ -118,20 +129,20 @@ def main():
 
     page = HandlePage(url)
 
-    print(url)
-
     # Executa os metodos necessarios para adquirir os dados #
     page.getSoup()
     page.getTitulo()
+    print(page.titulo)
     page.getTexto() 
     page.getAutor()
     page.getData()
     page.getImageUrl()
-    print("Salvando conteúdo...")
-    page.saveConteudo()
     page.getJson()
-    print("Salvando JSON...")
+
+    # Salva as informacoes #
+    page.saveConteudo()
     page.saveJson()
+    page.saveImg()
     print("FIM.")
     
 if __name__ == "__main__":

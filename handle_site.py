@@ -1,11 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from urllib.parse import urlsplit
 import os
 import sys
-from PIL import Image
-from random import randint
 from time import sleep
 from handle_page import HandlePage
 import json
@@ -13,38 +10,14 @@ import json
 class HandleSite():
     def __init__(self):
         self.path_artigos = "./artigos"
-        self.conteudo = ""
-        self.titulo = ""
-        self.image_url = ""
-        self.ini = 0
-        self.fim = 0
-        self.lim = 0
         self.URL = 'https://saense.com.br/page/'
-        self.Prim_Art = ""
-        self.Ult_Art = ""
-
-    # Salvar conteudo em arquivo #
-    def saveTxt(self):
-        nomearquivo = self.titulo+".txt"
-        nomecompleto = os.path.join(self.path_artigos, nomearquivo)
-        f = open(nomecompleto, "w")
-        f.write(self.conteudo)
-        f.close()
-        return True
-
-    # Salvar arquivo de imagem #
-    def saveImg(self):
-        parts = urlsplit(self.image_url)
-        paths = parts.path.split('/')
-        formatoimg = paths[::-1][0].split('.')[::-1][0]
-        img = Image.open(requests.get(self.image_url, stream = True).raw)
-        nomearquivoimg = self.titulo + "." + formatoimg
-        nomecompleto = os.path.join(self.path_artigos, nomearquivoimg)
-        img.save(nomecompleto, formatoimg)
-        return True
+        self.ini = None 
+        self.fim = None
+        self.lim = None
+        self.Prim_Art = None
+        self.Ult_Art = None
 
     def extract(self):
-
         nomearquivocontrole = "__controle.txt"
         nomecompleto = os.path.join(self.path_artigos, nomearquivocontrole)
         fcontrole = open(nomecompleto, "a+")
@@ -73,7 +46,7 @@ class HandleSite():
 
             response = requests.get(self.URL+str(page)+'/')
             soup = BeautifulSoup(response.content, 'html.parser')
-            ## Gerar lista de URLs dos artigos daquela pagina
+            ## Gerar lista de URLs dos artigos daquela pagina ##
             artigostags = soup.body.find_all("a",{"class": "o-overlayLink"})
             artigosurls = []
             for link in artigostags:
@@ -82,7 +55,6 @@ class HandleSite():
             ## handle page ##
             for art in artigosurls:
                 page = HandlePage(art)
-                page.path_artigos = self.path_artigos
                 page.getSoup()
                 page.getTitulo()
 
@@ -100,13 +72,11 @@ class HandleSite():
                     page.getData()
                     page.getImageUrl()
                     page.getJson()
-                    self.titulo = page.titulo
-                    self.image_url = page.image_url
-                    self.saveImg()
 
                     try: 
                         page.saveConteudo()
                         page.saveJson()
+                        page.saveImg()
                     except Exception as e:
                         print(e)
 
