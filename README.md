@@ -10,7 +10,7 @@ Para executar os algortimos precisamos, primeiramente, instalar as dependências
 pip install -r requirements.txt
 ```
 
-Para obter instruções de execução do algoritmo desejado, execute-o com o parâmentro "--help" ou "-h", como por exemplo:  
+Para obter instruções da utilização do algoritmo desejado execute-o com o parâmentro "--help" ou "-h", como por exemplo:  
 
 ```shell
 python summary_tf-idf.py --help
