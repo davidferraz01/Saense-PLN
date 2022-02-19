@@ -3,6 +3,8 @@
 
 #### Um projeto de Processamento de Linguagem Natural voltado ao site Saense. 
 
+***OBS.:** Recomenda-se criar um [ambiente virtual do Python](https://docs.python.org/3/tutorial/venv.html) para não haver conflitos de dependências de outros projetos.*
+
 Para utilizar executar os algortimos necessitamos primeiramente instalar as dependências necessárias:
 > pip install -r requirements.txt
 
