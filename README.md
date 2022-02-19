@@ -14,7 +14,10 @@ Para instruções de execução qualquer algoritmo, execute-o com o parâmentro 
 
 ```shell
 python summary_tf-idf.py --help
-``` Ou: ```shell
+``` 
+Ou:
+
+```shell
 python summary_tf-idf.py -h
 ```
 
