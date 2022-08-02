@@ -75,10 +75,18 @@ class HandleSite():
 
                     try: 
                         page.saveConteudo()
+                    except Exception as e:
+                        print("\nErro", e,"ao salvar Texto", page.titulo)
+                    
+                    try: 
                         page.saveJson()
+                    except Exception as e:
+                        print("\nErro", e,"ao salvar Json", page.titulo)
+
+                    try: 
                         page.saveImg()
                     except Exception as e:
-                        print(e)
+                        print("\nErro", e,"ao salvar Imagem", page.titulo)
 
                 if page.titulo == ultimo:
                     a = True

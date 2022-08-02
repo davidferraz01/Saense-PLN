@@ -29,18 +29,19 @@ class HandlePage:
     def cleanText(self, text):
         text = text.replace('\n', ' ')
         cleanText = []
-        # Parametro criado para auxiliar a remover referencias do  texto #
+        # Parametro criado para auxiliar a remover referencias do texto #
         ref = False
         for ch in text:
-            if ref:
-                pass
-            elif ch == "[":
+            if ch == "[":
                 ref = True
             elif ch == "]":
                 ref = False
+            
+            elif ref:
+                pass
             else:
                 nfkd = unicodedata.normalize('NFKD', ch)
-                filter = re.sub('[^A-z 0-9 , . ( ) / : - -\\\]', '', nfkd)
+                filter = re.sub('[^A-z 0-9 , . ( ) / - -\\\]', '', nfkd)
                 char = u"".join([c for c in filter if not unicodedata.combining(c)])
                 cleanText.append(char)
         return ''.join(cleanText)
@@ -108,11 +109,11 @@ class HandlePage:
     def saveImg(self):
         parts = urlsplit(self.image_url)
         paths = parts.path.split('/')
-        formatoimg = paths[::-1][0].split('.')[::-1][0]
+        formatoimg = "." + paths[::-1][0].split('.')[::-1][0]
         img = Image.open(requests.get(self.image_url, stream = True).raw)
-        nomearquivoimg = self.titulo + "." + formatoimg
+        nomearquivoimg = self.titulo + formatoimg
         nomecompleto = os.path.join(self.path_artigos, nomearquivoimg)
-        img.save(nomecompleto, formatoimg)
+        img.save(nomecompleto)
 
 def main():
     # Funcao principal da aplicacao ##
@@ -140,9 +141,22 @@ def main():
     page.getJson()
 
     # Salva as informacoes #
-    page.saveConteudo()
-    page.saveJson()
-    page.saveImg()
+    try:
+        page.saveConteudo()
+    except Exception as e:
+        print("\nErro","'" + e + "'","ao salvar Texto", page.titulo)
+    
+    try:
+        page.saveJson()
+    except Exception as e:
+        print("\nErro","'" + e + "'","ao salvar Json", page.titulo)
+
+    try:
+        page.saveImg()
+    except Exception as e:
+        print("\nErro","'" + e + "'","ao salvar Imagem", page.titulo)
+
+    
     print("FIM.")
     
 if __name__ == "__main__":
