@@ -185,48 +185,49 @@ def main():
     nltk.download('stopwords')
 
     for file in glob.glob("artigos/*.txt"):
+        if file != "artigos/__controle.txt":
 
-        summary = Summary_TF_IDF()
+            summary = Summary_TF_IDF()
 
-        summary.arq_path = file.split('/')
+            summary.arq_path = file.split('/')
 
-        with open(file, "r", encoding="utf-8") as f:
-            text = " ".join(f.readlines())
+            with open(file, "r", encoding="utf-8") as f:
+                text = " ".join(f.readlines())
 
-        # 1 Sentence Tokenize
-        summary.sentences = sent_tokenize(text)
-        summary.total_documents = len(summary.sentences)
-        
-        # 2 Create the Frequency matrix of the words in each sentence.
-        summary._create_frequency_matrix()
-        
-        '''
-        #Term frequency (TF) is how often a word appears in a document, divided by how many words are there in a document.
-        '''
-        # 3 Calculate TermFrequency and generate a matrix
-        summary._create_tf_matrix()
-        
-        # 4 creating table for documents per words
-        summary._create_documents_per_words()
+            # 1 Sentence Tokenize
+            summary.sentences = sent_tokenize(text)
+            summary.total_documents = len(summary.sentences)
+            
+            # 2 Create the Frequency matrix of the words in each sentence.
+            summary._create_frequency_matrix()
+            
+            '''
+            #Term frequency (TF) is how often a word appears in a document, divided by how many words are there in a document.
+            '''
+            # 3 Calculate TermFrequency and generate a matrix
+            summary._create_tf_matrix()
+            
+            # 4 creating table for documents per words
+            summary._create_documents_per_words()
 
-        '''
-        #Inverse document frequency (IDF) is how unique or rare a word is.
-        '''
-        # 5 Calculate IDF and generate a matrix
-        summary._create_idf_matrix()
+            '''
+            #Inverse document frequency (IDF) is how unique or rare a word is.
+            '''
+            # 5 Calculate IDF and generate a matrix
+            summary._create_idf_matrix()
 
-        # 6 Calculate TF-IDF and generate a matrix
-        summary._create_tf_idf_matrix()
-        
-        # 7 Important Algorithm: score the sentences
-        summary._score_sentences()
+            # 6 Calculate TF-IDF and generate a matrix
+            summary._create_tf_idf_matrix()
+            
+            # 7 Important Algorithm: score the sentences
+            summary._score_sentences()
 
-        # 8 Find the threshold
-        summary._find_average_score()
-        
-        # 9 Generate the summary
-        summary._generate_summary()
-        summary.save_summary(art_len_limit)
+            # 8 Find the threshold
+            summary._find_average_score()
+            
+            # 9 Generate the summary
+            summary._generate_summary()
+            summary.save_summary(art_len_limit)
     
 
 if __name__ == "__main__":
