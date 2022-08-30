@@ -21,3 +21,5 @@ Seguindo essa linha de raciocínio, o foco atual deste projeto pesquisa está vo
 
 ### **Considerações Finais**
 Neste Site será documentado o processo, estado atual e os resultados parciais e finais desse estudo em *Processamento de Linguagem Natural (PLN)*. O objetivo é conseguir desenvolver bons algoritmos de sumarização de texto com diferentes abordagens. Dessa forma, teremos explorado e avaliado diferentes técnicas e pontos de vistas na área de *Processamento de Linguagem Natural (PLN)*, expandindo e aprimorando conhecimento dos envolvidos e outras pessoas que se interessam pelo assunto.
+
+<embed src="pdfs/relatorio.pdf" type="application/pdf" width="800" height="800" />
