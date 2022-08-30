@@ -24,4 +24,4 @@ Neste Site será documentado o processo, estado atual e os resultados parciais e
 
 
 
-<embed src="https://github.com/0xdferraz/Saense-PLN/blob/gh-pages/pdfs/relatorio.pdf" type="application/pdf"/>
+<embed src="http://www.tede2.ufrpe.br:8080/tede2/bitstream/tede2/7868/2/Anderson%20Pinheiro%20Cavalcanti.pdf" type="application/pdf"/>
