@@ -22,7 +22,7 @@ class Summary_TF_IDF():
 
     def _create_frequency_matrix(self): 
         freq_matrix = {}
-        stopWords = set(stopwords.words("portuguese")) # Analisar qual Stopwords gera melhor resultado "english" ou "portuguese"
+        stopWords = set(stopwords.words("portuguese"))
         ps = PorterStemmer()
 
         for sent in self.sentences:
@@ -98,12 +98,6 @@ class Summary_TF_IDF():
         self.tf_idf_matrix = tf_idf_matrix
 
     def _score_sentences(self) -> dict:
-        """
-        score a sentence by its word's TF
-        Basic algorithm: adding the TF frequency of every non-stop word in a sentence divided by total no of words in a sentence.
-        :rtype: dict
-        """
-
         sentenceValue = {}
 
         for sent, f_table in self.tf_idf_matrix.items():
@@ -118,10 +112,6 @@ class Summary_TF_IDF():
         self.sentenceValue = sentenceValue
 
     def _find_average_score(self) -> int:
-        """
-        Find the average score from the sentence value dictionary
-        :rtype: int
-        """
         sumValues = 0
         for entry in self.sentenceValue:
             sumValues += self.sentenceValue[entry]
@@ -142,21 +132,6 @@ class Summary_TF_IDF():
 
         self.summary = summary
     
-    """
-    for i in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]:
-        summary = _generate_summary(sentences, sentence_scores, i * threshold)
-        if len(summary) <= art_len_limit:
-            print("\nTamanho final do texto:", len(summary), "caracteres\n")
-
-            # Save summary #
-            #  CRIAR UMA PASTA DE RESUMOS #
-            nomearquivo = "Summary_" + path[1]
-            nomecompleto = os.path.join("./resumos_tf-idf", nomearquivo)
-            f = open(nomecompleto, "w")
-            f.write(summary)
-            f.close()
-            break
-    """
 
     def save_summary(self, art_len_limit):
         average = self.average
@@ -182,18 +157,25 @@ def main():
             Summary TF-IDF ( https://github.com/0xdferraz/Saense-PLN )
             Resume textos utilizando a tecnica TF-IDF
 
-            Uso: python summary_tf-idf.py <Opcional: Tamanho do resumo ( padrao = 1100 caracteres )>
+            Uso: python summary_tf-idf.py <Opcional: Tamanho do resumo ( padrao = 1800 caracteres )>
             """)
-            exit()
 
+            sys.exit(1)
+    
         else:
-            art_len_limit = int(sys.argv[1])
+            art_len_limit = sys.argv[1]
+
+    except SystemExit:
+        sys.exit()
+
     except:
-        art_len_limit = 1100
+        art_len_limit = 1800
+    
+
 
     nltk.download('punkt')
     nltk.download('stopwords')
-
+    
     for file in glob.glob("artigos/*.txt"):
         if file != "artigos/__controle.txt":
 
@@ -204,41 +186,26 @@ def main():
             with open(file, "r", encoding="utf-8") as f:
                 text = " ".join(f.readlines())
 
-            # 1 Sentence Tokenize
             summary.sentences = sent_tokenize(text)
             summary.total_documents = len(summary.sentences)
-            
-            # 2 Create the Frequency matrix of the words in each sentence.
+
             summary._create_frequency_matrix()
-            
-            '''
-            #Term frequency (TF) is how often a word appears in a document, divided by how many words are there in a document.
-            '''
-            # 3 Calculate TermFrequency and generate a matrix
+
             summary._create_tf_matrix()
-            
-            # 4 creating table for documents per words
+
             summary._create_documents_per_words()
 
-            '''
-            #Inverse document frequency (IDF) is how unique or rare a word is.
-            '''
-            # 5 Calculate IDF and generate a matrix
             summary._create_idf_matrix()
 
-            # 6 Calculate TF-IDF and generate a matrix
             summary._create_tf_idf_matrix()
             
-            # 7 Important Algorithm: score the sentences
             summary._score_sentences()
 
-            # 8 Find the threshold
             summary._find_average_score()
             
-            # 9 Generate the summary
             summary._generate_summary()
             summary.save_summary(art_len_limit)
-        
+    
 
 if __name__ == "__main__":
     main()

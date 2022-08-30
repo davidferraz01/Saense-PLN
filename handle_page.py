@@ -7,6 +7,7 @@ import json
 import os
 import unicodedata
 import re
+import io
 
 class HandlePage:
     def __init__(self, url):
@@ -110,13 +111,20 @@ class HandlePage:
         parts = urlsplit(self.image_url)
         paths = parts.path.split('/')
         formatoimg = "." + paths[::-1][0].split('.')[::-1][0]
-        img = Image.open(requests.get(self.image_url, stream = True).raw)
+        if formatoimg == ".php" or formatoimg == ".article": formatoimg = ".png"
+
+        try:
+            img = Image.open(requests.get(self.image_url, stream = True).raw).convert("RGB")
+        except:
+            img = Image.open(io.BytesIO(requests.get(self.image_url, stream=True).content)).convert("RGB")
+            formatoimg = ".png"
+
         nomearquivoimg = self.titulo + formatoimg
         nomecompleto = os.path.join(self.path_artigos, nomearquivoimg)
         img.save(nomecompleto)
 
 def main():
-    # Funcao principal da aplicacao ##
+    # Funcao principal da aplicacao #
     if sys.argv[1] == "--help" or sys.argv[1] == "-h":
         print("""
         Handle Page ( https://github.com/0xdferraz/Saense-PLN )
