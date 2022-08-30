@@ -24,4 +24,4 @@ Neste Site será documentado o processo, estado atual e os resultados parciais e
 
 
 
-<embed src="/docs/David Ferraz PIBIC COPES UFS Relatorio Final.pdf" type="application/pdf" />
+<embed src="https://github.com/0xdferraz/Saense-PLN/blob/gh-pages/docs/David%20Ferraz%20PIBIC%20COPES%20UFS%20Relatorio%20Final.pdf" type="application/pdf" />
