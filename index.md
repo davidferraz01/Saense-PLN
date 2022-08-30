@@ -24,4 +24,6 @@ Neste Site será documentado o processo, estado atual e os resultados parciais e
 
 
 
-<embed src="pdfs/relatorio.pdf" type="application/pdf"/>
+<embed src="pdfsssss/relatorio.pdf" type="application/pdf"/>
+
+<a href="pdfs/relatorio.pdf" class="image fit"><img src="" alt=""></a>
