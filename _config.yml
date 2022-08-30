@@ -18,6 +18,7 @@ navbar-links:
     - TF-IDF: "tf-idf"
     - Abstrativa (Pegasus): "abstrativa_pegasus" 
     - Abstrativa (mT5): "abstrativa_mt5"
+  Resultados: "resultados.md"
   Sobre mim: "aboutme"
 
 # --- Logo --- #
