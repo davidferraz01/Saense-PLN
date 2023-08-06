@@ -21,4 +21,4 @@ Ou:
 python summary_tf-idf.py -h
 ```
 
-#### Para mais informações visite nossa [página](https://0xdferraz.github.io/Saense-PLN/).
+#### Para mais informações visite nossa [página](https://davidferraz01.github.io/Saense-PLN/).
