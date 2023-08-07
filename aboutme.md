@@ -4,6 +4,6 @@ title: Sobre mim
 ---
 
 Sou David Ferraz, estudante de Engenharia de Computação na Universidade Federal de Sergipe.
-Sou fascinado por Astrofísica, Psicologia, Cibersegurança, Inteligência Artificial e Energia Limpa. Atualmente estou trabalhando nesse projeto de Processamento de Linguagem Natural com o Orientador [Dr. Hendrik Texeira](https://www.sigaa.ufs.br/sigaa/public/docente/portal.jsf?siape=2527554). 
+Possuo interesse por diversas áreas do conhecimento, além de Cibersegurança, Inteligência Artificial e Engenharia de Software. Esse projeto de Processamento de Linguagem Natural foi desenvolvido juntamente com o Orientador [Dr. Hendrik Texeira](https://www.sigaa.ufs.br/sigaa/public/docente/portal.jsf?siape=2527554). 
 
-Qualquer dúvida ou sugestão sobre esse projeto esterei disponível em minhas redes sociais ou email. Abraço! 
+Estou disponível, através do email, para sanar qualquer dúvida ou sugestão sobre esse projeto. Obrigado!
